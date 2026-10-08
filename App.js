@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   SafeAreaView,
   View,
@@ -10,6 +10,12 @@ import {
 } from 'react-native';
 
 export default function App() {
+  const [points, setPoints] = useState(0);
+
+  const handleAddPoints = () => {
+    setPoints((prev) => prev + 1);
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="light-content" backgroundColor="#000000" />
@@ -62,7 +68,7 @@ export default function App() {
             <Text style={styles.label}>Points</Text>
             <View style={styles.row}>
               <Text style={styles.icon}>★</Text>
-              <Text style={styles.value}>0</Text>
+              <Text style={styles.value}>{points}</Text>
             </View>
           </View>
         </View>
@@ -72,7 +78,7 @@ export default function App() {
       <TouchableOpacity
         style={styles.fab}
         activeOpacity={0.8}
-        onPress={() => console.log('FAB pressed')}
+        onPress={handleAddPoints}
       >
         <Text style={styles.fabIcon}>+</Text>
       </TouchableOpacity>
